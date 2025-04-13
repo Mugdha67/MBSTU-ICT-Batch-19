@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="application.DashboardController" spacing="10" padding="10">
+    <TableView fx:id="studentTable">
+        <columns>
+            <TableColumn fx:id="nameCol" text="Name"/>
+            <TableColumn fx:id="ageCol" text="Age"/>
+            <TableColumn fx:id="gradeCol" text="Grade"/>
+        </columns>
+    </TableView>
+    <Button text="Add Student" onAction="#addStudent"/>
+</VBox>
