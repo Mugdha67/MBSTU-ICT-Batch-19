@@ -1,1 +1,52 @@
-hi
+// Define a public class named Person
+public class Person {
+
+    // Private fields - data hidden from outside access
+    private String name;
+    private int age;
+
+    // Public getter method for name
+    public String getName() {
+        return name; // Return the value of name
+    }
+
+    // Public setter method for name
+    public void setName(String name) {
+        this.name = name; // Set the value of name
+    }
+
+    // Public getter method for age
+    public int getAge() {
+        return age; // Return the value of age
+    }
+
+    // Public setter method for age
+    public void setAge(int age) {
+        // Basic validation: age cannot be negative
+        if (age >= 0) {
+            this.age = age; // Set the value of age
+        } else {
+            System.out.println("Age cannot be negative."); // Error message
+        }
+    }
+}
+
+// Another class to test the Person class
+class Main {
+    public static void main(String[] args) {
+        // Create an object of Person
+        Person person = new Person();
+
+        // Set name using setter method
+        person.setName("Alice");
+
+        // Set age using setter method
+        person.setAge(25);
+
+        // Get and print name using getter method
+        System.out.println("Name: " + person.getName());
+
+        // Get and print age using getter method
+        System.out.println("Age: " + person.getAge());
+    }
+}
