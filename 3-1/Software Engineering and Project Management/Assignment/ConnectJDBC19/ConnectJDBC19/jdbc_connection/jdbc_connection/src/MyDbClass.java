@@ -16,7 +16,7 @@ public class MyDbClass {
     public Connection getConnection() {
         String url = "jdbc:mysql://localhost:3306/student";
         try {
-            connection = DriverManager.getConnection(url, "root", "052312");
+            connection = DriverManager.getConnection(url, "Mugdha67", "1610978486");
         } catch (SQLException e) {
             e.printStackTrace();
         }
