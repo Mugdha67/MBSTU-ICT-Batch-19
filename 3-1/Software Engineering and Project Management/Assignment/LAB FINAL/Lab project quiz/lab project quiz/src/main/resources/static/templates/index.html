@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>কুইজ গেম</title>
+</head>
+<body>
+<h2>আপনার স্টুডেন্ট আইডি দিন</h2>
+<form method="post" action="/start-quiz" accept-charset="UTF-8">
+    <input type="text" name="studentId" required/>
+    <button type="submit">শুরু করুন</button>
+</form>
+<p th:text="${error}" style="color:red;"></p>
+</body>
+</html>

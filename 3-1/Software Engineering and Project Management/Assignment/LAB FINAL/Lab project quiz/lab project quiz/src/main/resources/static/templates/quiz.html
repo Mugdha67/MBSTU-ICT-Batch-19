@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ইতিহাস কুইজ</title>
+</head>
+<body>
+<h2>ইতিহাস কুইজ</h2>
+<h3 th:text="'স্বাগতম, ' + ${userName}"></h3>
+
+<form method="post" action="/submit-quiz" accept-charset="UTF-8">
+    <input type="hidden" name="studentId" th:value="${studentId}" />
+
+    <p th:text="'১. ' + ${questions[0]}"></p>
+    <input type="text" name="answer1" required />
+
+    <p th:text="'২. ' + ${questions[1]}"></p>
+    <input type="text" name="answer2" required />
+
+    <br><br>
+    <button type="submit">জমা দিন</button>
+</form>
+</body>
+</html>
