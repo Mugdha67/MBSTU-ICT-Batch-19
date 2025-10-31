@@ -1,0 +1,51 @@
+# ⚙️ Operating System Calculator (Java)
+
+## 📘 Project Overview
+The **Operating System Calculator** is a Java-based educational project that helps simulate and calculate important concepts used in **Operating Systems (OS)**, such as process scheduling and resource management.  
+This tool is designed for students to understand better OS-related algorithms and how different parameters affect system performance.
+
+---
+
+## 🧠 Features
+- 📊 Simulates OS-related calculations  
+- 🧮 Performs mathematical and algorithmic operations used in OS concepts  
+- ⚡ Supports CPU scheduling calculations (FCFS, SJF, Priority, RR — depending on implementation)  
+- 🧠 Demonstrates logic and problem-solving in Operating Systems coursework  
+- 💻 Runs fully in the console with user-friendly input prompts  
+
+---
+
+## 💻 Technologies Used
+- **Language:** Java  
+- **Platform:** Console (Command-line Interface)  
+- **IDE:** IntelliJ IDEA  
+- **Project File:** `OScalculator.iml`  
+
+---
+
+## ⚙️ How to Run
+1. Open the project in **IntelliJ IDEA** or any Java IDE.  
+2. Make sure the JDK (Java Development Kit) is installed and properly configured.  
+3. Locate the main class file (for example, `Main.java` or `OScalculator.java`).  
+4. Run the program from the IDE or through the terminal using:
+   ```bash
+   javac Main.java
+   java Main
+🎯 Learning Outcomes
+This project helps students understand:
+
+How operating system algorithms work behind the scenes
+
+The mathematical logic behind process scheduling
+
+How to implement OS concepts using Java
+
+🧑‍💻 Author
+Developed by: Mugdha
+Project Name: Operating System Calculator
+Language: Java
+Environment: IntelliJ IDEA
+Year: 2024
+
+🏆 License
+This project is open-source and can be used freely for educational and research purposes.
