@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1707647314 source:e:\project\ictpl cricket tournament\main.cpp
+	<iostream>
+	<unistd.h>
+
