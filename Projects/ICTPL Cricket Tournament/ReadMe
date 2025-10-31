@@ -1,0 +1,109 @@
+# 🏏 ICT Premier League Console Game (C++)
+
+Welcome to the **ICT Premier League 2024 Console Game**, a fun and interactive cricket simulation written entirely in **C++**!  
+This program lets two teams from different university batches face off in a short 5-over match — with real cricket elements like wickets, wides, no-balls, and even random injuries!
+
+---
+
+## 🎮 Features
+
+- **Team Selection:** Choose from Batch 15 to Batch 20.  
+- **Interactive Toss System:** Heads or Tails decides who bats or bowls first.  
+- **Match Simulation:**  
+  - 5 overs per team (30 balls max).  
+  - 5 wickets per innings.  
+  - Supports `0, 1, 2, 3, 4, 6, w (wide), n (no ball), W (wicket)` inputs.  
+- **Extras Handling:**  
+  - `w` (Wide Ball) → +1 run and extra ball.  
+  - `n` (No Ball) → +1 run and extra ball (includes optional run input).  
+- **Randomized Events:**  
+  - 1 in 50 chance for a **player injury**.  
+  - Randomized **wicket fall types** (bowled, catch, run out, LBW, etc.).  
+- **Result Calculation:** Automatically declares the winner or tie.  
+- **Aesthetic Console Output:** ASCII art and descriptive commentary make the game engaging!
+
+---
+
+## 🧠 How the Game Works
+
+1. Launch the program.
+2. Read the instructions carefully.
+3. Press **S** to start or **Q** to quit.
+4. Choose **two teams** (from Batch 15–20).
+5. Perform a **toss** — Team 1 chooses `H` (Head) or `T` (Tail).
+6. Winner decides whether to **bat** or **bowl** first.
+7. Input the result of each ball manually:
+8. After both innings, the result is displayed — including overs, runs, and wickets.
+
+---
+
+## ⚙️ Controls and Input
+
+| Input | Description |
+|:------|:-------------|
+| `0, 1, 2, 3, 4, 6` | Runs scored |
+| `W` | Wicket |
+| `w` | Wide ball (+1 run, extra ball) |
+| `n` | No ball (+1 run, extra ball) |
+| `y/n` | Ask for runs in a no-ball scenario |
+| `S` | Start a new match |
+| `Q` | Quit the game |
+
+---
+
+## 🧩 Code Overview
+
+### `main()`
+Handles:
+- Welcome screen & instructions  
+- Team selection  
+- Toss logic  
+- Batting order decision  
+- Match flow control between `game()` and `game2()`
+
+### `teamchoose(int x)`
+Maps team numbers (1–6) to their respective batch names.
+
+### `game()` & `game2()`
+Simulate each innings:
+- Take per-ball input
+- Update score and wickets
+- Display random commentary and events
+- Handle wides, no-balls, and injuries
+
+### Global Variables
+- `int g1, g2;` — store scores for both innings.
+
+---
+
+## 🖥️ How to Run
+
+### On **Windows**
+```bash
+g++ -o ipl_game main.cpp
+ipl_game.exe
+
+
+
+Example game play:
+Start a New Board (Press S)
+Press Q to Quit the Game
+> S
+
+Press 1 to select Batch 15
+Press 2 to select Batch 16
+...
+Choose Team 1:
+> 3
+Choose Team 2:
+> 6
+
+Batch17 (Team 1) vs Batch20 (Team 2)
+
+It's Time for Toss... Team 1 choose H for Head or T for Tail
+> H
+It's Tail
+Batch17 lost the Toss
+Batch20 press 1 to bat or 0 to field
+> 1
+Batch20 will Bat now
