@@ -1,0 +1,68 @@
+# 🧮 Simple Calculator (Java)
+
+A beginner-friendly **Java console application** that performs basic mathematical operations such as addition, subtraction, multiplication, division, and power calculation.  
+This project demonstrates the use of **conditional statements, user input handling, and mathematical operations** in Java.
+
+---
+
+## 🚀 Features
+
+- ➕ **Addition**
+- ➖ **Subtraction**
+- ✖️ **Multiplication**
+- ➗ **Division**
+- ⚡ **Power Calculation (Square of a number)**
+
+---
+
+## 🧠 How It Works
+
+1. The program asks the user to input **two numbers**.  
+2. The user then selects the operation they want to perform:  
+    1) Addition
+    2) Subtraction
+    3) Multiplication
+    4) Division
+    5) Power
+3. The program operates and displays the result.  
+4. For the **power** option, users can choose whether to enhance (square) the first or second number.
+
+---
+
+## 🧩 Example Output
+Enter the first number
+5
+And enter second
+3
+Choose the operation
+1.Addition
+2.Subtraction
+3.Multiplication
+4.Division
+5.Power
+#Please enter the number of operation
+1
+5.0 + 3.0 = 8.0
+
+**Power Example:**
+#Please enter the number of operation
+5
+Enhance A or B?
+1.A
+2.B
+1
+25.0
+
+## ⚙️ How to Run
+
+1. Save the file as **SimpleCalculator.java**
+2. Open terminal or command prompt in the project directory.
+3. Compile the program:
+   ```bash
+   javac SimpleCalculator.java
+
+🏆 Author
+Developed by: Mugdha
+Language: Java
+Project Type: Console Application
+Year: 2024
