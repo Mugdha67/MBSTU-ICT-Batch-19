@@ -1,0 +1,57 @@
+🎮 Tic-Tac-Toe Game (Java Console)
+📌 Project Overview
+
+This is a console-based Tic-Tac-Toe game written in Java.
+It allows two players to take turns marking spaces in a 3×3 grid with X and O until one player wins or the game ends in a draw.
+The project demonstrates the use of arrays, loops, conditional statements, and input validation in Java.
+
+🧩 Features
+
+✅ Two-player gameplay (Player X and Player O)
+✅ Input validation to prevent invalid moves
+✅ Detects winning combinations (rows, columns, diagonals)
+✅ Detects draw condition
+✅ Easy-to-read board display in the console
+
+🧠 Concepts Used
+
+2D Arrays for the game board
+
+Loops for repeated turns
+
+Conditional statements for game logic
+
+Scanner class for user input
+
+Functions/Methods for modular code
+
+⚙️ How to Run the Program
+
+Open your Java IDE (e.g., IntelliJ IDEA, Eclipse, or VS Code)
+
+Create a new Java project and add the code in a file named Main.java
+
+Compile and run the program
+
+Players take turns entering row and column numbers (0, 1, or 2)
+
+Example Input:
+
+Player X, enter your move (row and column 0, 1, or 2):
+0 1
+
+🎯 Game Rules
+
+The grid has 3 rows and 3 columns.
+
+Players take turns placing their mark (X or O).
+
+The first player to align three marks horizontally, vertically, or diagonally wins.
+
+If all cells are filled and no one wins, the game ends in a draw.
+
+🧑‍💻 Author
+Developed by: Mugdha
+Language: Java
+Project Type: Console-based Game
+Year: 2024
