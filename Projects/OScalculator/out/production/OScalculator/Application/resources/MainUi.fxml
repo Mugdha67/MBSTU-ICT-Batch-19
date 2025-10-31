@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Ellipse?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.controllers.MainController">
+   <children>
+      <Button layoutX="82.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchTodiskScheduling" prefHeight="25.0" prefWidth="205.0" text="Disk Scheduling Algorithm" />
+      <Ellipse fill="DODGERBLUE" layoutX="300.0" layoutY="39.0" radiusX="138.0" radiusY="25.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label layoutX="190.0" layoutY="32.0" text="Welcome To Operating System Calculator" />
+      <Label layoutX="210.0" layoutY="71.0" text="Choose Any Algorithm to Perform" />
+      <Button layoutX="82.0" layoutY="217.0" mnemonicParsing="false" onAction="#switchToPageReplacement" prefHeight="25.0" prefWidth="205.0" text="Page Replacement Algorithm" />
+      <Button layoutX="80.0" layoutY="257.0" mnemonicParsing="false" onAction="#switchToMemoryAllocation" prefHeight="25.0" prefWidth="205.0" text="Memory Allocation Algorithm" />
+      <Button layoutX="82.0" layoutY="131.0" mnemonicParsing="false" onAction="#switchToProcessScheduing" prefHeight="25.0" prefWidth="205.0" text="Process Scheduling Algorithm" />
+      <Label layoutX="287.0" layoutY="135.0" text="#There are some errors in this Algorithm, will fix it in next Update" />
+   </children>
+</AnchorPane>

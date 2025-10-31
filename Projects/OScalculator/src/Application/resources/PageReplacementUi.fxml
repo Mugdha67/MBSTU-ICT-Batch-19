@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Ellipse?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.controllers.PageReplacementController">
+    <children>
+        <Button layoutX="110.0" layoutY="125.0" mnemonicParsing="false" onAction="#switchToFIFO" prefHeight="25.0" prefWidth="259.0" text="FIFO Page Replacement Algorithm" />
+        <Button layoutX="537.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToHome" text="Home" />
+        <Ellipse fill="DODGERBLUE" layoutX="312.0" layoutY="47.0" radiusX="143.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" />
+        <Label layoutX="206.0" layoutY="37.0" text="Welcome to Page Replacement Algorithm" />
+        <Label layoutX="64.0" layoutY="87.0" text="#There are 3 Types of Page Replacement Algorithm" />
+        <Label layoutX="92.0" layoutY="129.0" text="1." />
+        <Button layoutX="110.0" layoutY="169.0" mnemonicParsing="false" onAction="#switchToLRU" prefHeight="25.0" prefWidth="259.0" text="LRU Page Replacement Algorithm" />
+        <Label layoutX="92.0" layoutY="173.0" text="2." />
+        <Label layoutX="92.0" layoutY="217.0" text="3." />
+        <Button layoutX="110.0" layoutY="213.0" mnemonicParsing="false" onAction="#switchToOPT" prefHeight="25.0" prefWidth="259.0" text="Optimal Page Replacement Algorithm" />
+    </children>
+</AnchorPane>

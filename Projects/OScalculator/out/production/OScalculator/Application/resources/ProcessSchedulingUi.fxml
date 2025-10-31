@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Ellipse?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.controllers.ProcessSchedulingController">
+    <children>
+        <Button layoutX="110.0" layoutY="125.0" mnemonicParsing="false" onAction="#switchToFCFS" prefHeight="25.0" prefWidth="307.0" text="FCFS Process Scheduling Algorithm" />
+        <Button layoutX="537.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToHome" text="Home" />
+        <Ellipse fill="DODGERBLUE" layoutX="307.0" layoutY="47.0" radiusX="138.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" />
+        <Label layoutX="194.0" layoutY="38.0" text="Welcome to Process Scheduling Algorithm" />
+        <Label layoutX="64.0" layoutY="87.0" text="#There are 6 Types of Process Scheduling Algorithm" />
+        <Label layoutX="92.0" layoutY="129.0" text="1." />
+        <Button layoutX="110.0" layoutY="169.0" mnemonicParsing="false" onAction="#switchToPrePriority" prefHeight="25.0" prefWidth="307.0" text="Pre-emtive Priority Process Scheduling Algorithm" />
+        <Label layoutX="92.0" layoutY="173.0" text="2." />
+        <Label layoutX="92.0" layoutY="217.0" text="3." />
+        <Button layoutX="110.0" layoutY="213.0" mnemonicParsing="false" onAction="#switchToNonPrePriority" prefHeight="25.0" prefWidth="307.0" text="Non Pre-emtive Priority Process Scheduling Algorithm" />
+        <Label layoutX="92.0" layoutY="260.0" text="4." />
+        <Button layoutX="110.0" layoutY="256.0" mnemonicParsing="false" onAction="#switchToPreSJF" prefHeight="25.0" prefWidth="307.0" text="Pre-emtive SJF Process Scheduling Algorithm" />
+        <Label layoutX="92.0" layoutY="299.0" text="5." />
+        <Button layoutX="110.0" layoutY="295.0" mnemonicParsing="false" onAction="#switchToNonPreSJF" prefHeight="25.0" prefWidth="307.0" text="Non Pre-emtive SJF Process Scheduling Algorithm" />
+        <Label layoutX="92.0" layoutY="337.0" text="6." />
+        <Button layoutX="110.0" layoutY="333.0" mnemonicParsing="false" onAction="#switchToRR" prefHeight="25.0" prefWidth="307.0" text="Round Robin Process Scheduling Algorithm" />
+    </children>
+</AnchorPane>
