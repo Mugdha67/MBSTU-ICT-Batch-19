@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 align = "center"> Input Form</h1>
+    <form align = "center" action="submit.html" method="post">
+        <label for="fname">First Name:</label>
+        <input type="text" name ="fname">
+        <label for="lname">Last Name:</label>
+        <input type="text", name="lname"><br><br>
+        <label for="user">User Name:</label>
+        <input type="text" name="user">
+        <label for="password">Password:</label>
+        <input type="text" name="password"><br><br>
+
+        <label for="gender">Gender:</label>
+        <input type="radio" id="m" name="gender" value="Male">
+        <label for="gender">Male</label>
+        <input type="radio" id="f" name="gender" value="Female">
+        <label for="gender">Female</label><br>
+
+        <label for="religion">Religion:</label>
+        <input type="checkbox" id="r" name="religion" value="Muslim">
+        <label for="religion">Muslim</label>
+        <input type="checkbox" id="r" name="religion" value="Muslim">
+        <label for="religion">Others</label><br><br>
+
+        <label for="field">IT Expert</label>
+        <input type="checkbox" id="it_e" name="field" value="IT Expert">
+        <label for="field">Hardware Expert</label>
+        <input type="checkbox" id="h_e" name="field" value="Hardware Expert">
+        <label for="field">Software Expert</label>
+        <input type="checkbox" id="s_e" name="field" value="Software Expert">
+        <label for="field">Graphic Designer</label>
+        <input type="checkbox" id="g_d" name="field" value="Graphic Designer">
+        <label for="field">Network Expert</label>
+        <input type="checkbox" id="n_e" name="field" value="Network Expert"><br><br>
+        <label for="dept">Select DepartmentName</label>
+        <select name="dept" id="dept">
+            <option value="CSE">CSE</option>
+            <option value="EEE">EEE</option>
+            <option value="ICT">ICT</option>
+            <option value="BBA">BBA</option>
+            <option value="ENG">ENG</option>
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
