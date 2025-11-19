@@ -1,0 +1,25 @@
+body{
+    margin: 0;
+    padding : 10px;
+}
+ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style-type: none;
+    background-color: ghostwhite;
+}
+ul li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 20px 50px;
+    text-decoration: none;
+}
+ul li a:hover {
+    background-color: lightgray;
+}
+ul li a.active {
+    background-color: gray;
+    color: white;
+}
