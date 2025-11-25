@@ -1,0 +1,27 @@
+.container {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr 2fr;
+    grid-template-rows: 2fr 2fr 2fr 2fr 2fr;
+    grid-template-areas: 
+        "lal nil nil holud holud"
+        "lal holud sada sada lal"
+        "sada holud sada sada lal"
+        "sada lal lal nil lal";
+    height: 10vh;
+}
+lal {
+    grid-area: lal;
+    background: rgb(255, 0, 0);
+}
+sada{
+    grid-area: sada;
+    background: white;
+}
+nil{
+    grid-area: nil;
+    background: blue
+}
+holud{
+    grid-area: holud;
+    background: yellow;
+}

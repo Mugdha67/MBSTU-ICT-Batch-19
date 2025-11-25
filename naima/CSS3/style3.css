@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+section{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+        "id1 id2 id2 id3 id3"
+        "id1 id4 id5 id5 id6"
+        "id7 id4 id5 id5 id6"
+        "id7 id8 id8 id9 id6";
+    padding: 10px;
+    height: 100vh;
+}
+#id1{
+    grid-area: id1;
+    background: rgb(56, 20, 20);
+    border: 15px solid black;
+}
+#id2{
+    grid-area: id2;
+    background: green;
+    border: 15px solid black;
+}
+#id3{
+    grid-area: id3;
+    background: blue;
+    border: 15px solid black;
+}
+#id4{
+    grid-area: id4;
+    background: yellow;
+    border: 15px solid black;
+}
+#id5{
+    grid-area: id5;
+    background: purple;
+    border: 15px solid black;
+}
+#id6{
+    grid-area: id6;
+    background: orange;
+    border: 15px solid black;
+}
+#id7{
+    grid-area: id7;
+    background: pink;
+    border: 15px solid black;
+}
+#id8{
+    grid-area: id8;
+    background: brown;
+    border: 15px solid black;
+}
+#id9{
+    grid-area: id9;
+    background: gray;
+    border: 15px solid black;
+}
