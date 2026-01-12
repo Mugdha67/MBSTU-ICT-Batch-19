@@ -1,0 +1,225 @@
+% Design of filter using Bilinear Transformation
+
+clc; 
+clear all; 
+close all;
+
+fs = 1000;        % sampling frequency
+fn = fs/2;
+
+fc = 300;         % cutoff frequency
+n = 5;
+
+[z,p,k] = butter(n, fc/fn);
+
+b = k*poly(z);    % zeros
+a = poly(p);      % poles
+
+[h, om] = freqz(b, a, 512, fs);
+
+subplot(2,1,1);
+plot(om, 20*log10(abs(h)));
+xlabel('Normalized Frequency');
+ylabel('gain in db');
+title('magnitude response');
+
+subplot(2,1,2);
+plot(om, angle(h));
+xlabel('Normalized Frequency');
+ylabel('phase in radians');
+title('phase response');
+
+
+
+
+
+% Butterworth low-pass filter
+
+clc;
+clear all;
+close all;
+
+alphas = 30;     % pass band attenuation in dB
+alphap = 0.5;    % stop band attenuation in dB
+
+fpass = 1000;    % pass band frequency in Hz
+fstop = 1500;    % stop band frequency in Hz
+fsam  = 5000;    % sampling frequency in Hz
+
+wp = 2*fpass/fsam;
+ws = 2*fstop/fsam;   % pass band and stop band frequencies
+
+[n, wn] = buttord(wp, ws, alphap, alphas);   % minimal order, half-power frequency
+[b, a] = butter(n, wn);                      % coefficients of designed filter
+
+[h, w] = freqz(b, a);
+
+subplot(2,1,1);
+plot(w/pi, 20*log10(abs(h)));
+xlabel('Normalized Frequency');
+ylabel('gain in db');
+title('magnitude response');
+
+subplot(2,1,2);
+plot(w/pi, angle(h));
+xlabel('Normalized Frequency');
+ylabel('phase in radians');
+title('phase response');
+
+
+
+% Butterworth High-Pass Filter Design
+clc;
+clear;
+close all;
+
+alphap = 5;     % Passband attenuation in dB
+alphas = 50;    % Stopband attenuation in dB
+
+fp = 1050;      % Passband frequency (Hz)
+fs = 600;       % Stopband frequency (Hz)
+fsam = 3500;    % Sampling frequency (Hz)
+
+% Normalize frequencies (with respect to Nyquist frequency)
+wp = fp / (fsam/2);
+ws = fs / (fsam/2);
+
+% Find minimum filter order and cutoff frequency
+[n, wn] = buttord(wp, ws, alphap, alphas);
+
+% Design Butterworth high-pass filter
+[b, a] = butter(n, wn, 'high');
+
+% Frequency response
+[h, w] = freqz(b, a, 512);
+
+% Magnitude response
+subplot(2,1,1)
+plot(w/pi, 20*log10(abs(h)))
+grid on
+xlabel('Normalized Frequency (\times\pi rad/sample)')
+ylabel('Gain (dB)')
+title('Magnitude Response')
+
+% Phase response
+subplot(2,1,2)
+plot(w/pi, angle(h))
+grid on
+xlabel('Normalized Frequency (\times\pi rad/sample)')
+ylabel('Phase (radians)')
+title('Phase Response')
+
+
+
+clc;
+clear all;
+close all;
+
+n = 20;          % Filter order
+fp = 100;        % Passband frequency (Hz)
+fs = 1000;       % Sampling frequency (Hz)
+
+% Normalized cutoff frequency (w.r.t Nyquist frequency)
+fn = fp / (fs/2);
+
+% Rectangular window
+window = rectwin(n+1);
+
+% FIR high-pass filter design
+b = fir1(n, fn, 'high', window);
+
+% Frequency vector
+w = 0:0.001:pi;
+
+% Frequency response
+[h, om] = freqz(b, 1, w);
+
+% Magnitude and phase
+mag = 20*log10(abs(h));
+ph  = angle(h);
+
+% Magnitude response
+subplot(2,1,1)
+plot(om/pi, mag)
+grid on
+xlabel('Normalized Frequency')
+ylabel('Gain (dB)')
+title('Magnitude Plot')
+
+% Phase response
+subplot(2,1,2)
+plot(om/pi, ph)
+grid on
+xlabel('Normalized Frequency')
+ylabel('Phase (radians)')
+title('Phase Response')
+
+
+
+
+
+% Response of low-pass FIR filter using Bartlett(Triangular) window
+
+clc; clear all; close all;
+
+n=20;
+fp=100;
+fq=300;
+fs=1000;
+fn=2*fp/fs;
+window=bartlett(n+1);
+b=fir1(n,fn,window);
+w=0:0.001:pi;
+[h,om]=freqz(b,1,w);
+a=20*log10(abs(h));
+
+b=angle(h);
+subplot(2,1,1);plot(w/pi,a);
+xlabel('Normalized frequency')
+ylabel('Gain in db')
+title('magnitude plot')
+subplot(2,1,2);plot(w/pi,b);
+xlabel('Normalized frequency')
+ylabel('Phase in radians')
+title('Phase Response')
+
+
+
+
+% Response of band stop FIR filter using Hamming window
+
+clc;
+clear all;
+close all;
+
+n = 20;
+
+fp = 200;
+fq = 300;
+fs = 1000;
+
+wp = 2*fp/fs;
+ws = 2*fq/fs;
+
+wn = [wp ws];
+
+window = hamming(n+1);
+
+b = fir1(n, wn, 'stop', window);
+
+[h, w] = freqz(b, 1, 512);
+
+mag = 20*log10(abs(h));
+phase = angle(h);
+
+subplot(2,1,1);
+plot(w/pi, mag);
+xlabel('Normalized frequency');
+ylabel('Gain in dB');
+title('Magnitude Response');
+
+subplot(2,1,2);
+plot(w/pi, phase);
+xlabel('Normalized frequency');
+ylabel('Phase in radians');
+title('Phase Response');
