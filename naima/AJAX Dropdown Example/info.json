@@ -1,6 +1,6 @@
-[ 
-{ "name": "Kuldip", "dept": "ICT" }, 
-{ "name": "Naima", "dept": "CSE" }, 
-{ "name": "Haldu", "dept": "EEE" }, 
-{ "name": "Shourav", "dept": "ICT" }
+[
+  { "faculty": "Engineering Faculty", "dept": ["ICT", "CSE", "ME", "TE"] },
+  { "faculty": "LifeScience Faculty", "dept": ["CPS", "ESRM", "SWE", "EEE"] },
+  { "faculty": "Science Faculty", "dept": ["Math", "Physics", "Chemistry", "Statistics"] },
+  { "faculty": "Arts Faculty", "dept": ["Accounting", "Management", "English", "FTNS"] }
 ]
