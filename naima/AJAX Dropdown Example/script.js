@@ -7,11 +7,11 @@ var xhr = new XMLHttpRequest();
 xhr.open("GET", "info.json", true); 
 xhr.onreadystatechange = function () { 
 if (xhr.readyState === 4 && xhr.status === 200) { 
-var students = JSON.parse(xhr.responseText); 
+var data = JSON.parse(xhr.responseText); 
 var html = "<ul>"; 
-for (var i = 0; i < students.length; i++) { 
-if (students[i].dept === dept) { 
-html += "<li>" + students[i].name + "</li>"; 
+for (var i = 0; i < data.length; i++) { 
+if (data[i].faculty === dept) { 
+html += "<li>" + data[i].dept + "</li>"; 
 } 
 } 
 html += "</ul>"; 
