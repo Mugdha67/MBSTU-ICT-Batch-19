@@ -1,0 +1,91 @@
+clc;
+clear;
+close all;
+
+%% Read and preprocess image
+img = imread('Kuldip.jpg');   % Replace with your image file
+if size(img,3) == 3
+    img = rgb2gray(img);     % Convert to grayscale
+end
+
+img = im2double(img);
+
+figure;
+imshow(img);
+title('Original Image');
+
+%% =========================
+%% 1. DCT (Discrete Cosine Transform)
+%% =========================
+dct_img = dct2(img);
+
+% Log scaling for visualization
+dct_display = log(abs(dct_img) + 1);
+
+figure;
+imshow(dct_display, []);
+title('DCT of Image');
+
+% Inverse DCT (Reconstruction)
+idct_img = idct2(dct_img);
+
+figure;
+imshow(idct_img);
+title('Reconstructed Image from DCT');
+
+%% =========================
+%% 2. FFT (Fast Fourier Transform)
+%% =========================
+fft_img = fft2(img);
+fft_shift = fftshift(fft_img);
+
+% Magnitude Spectrum
+fft_magnitude = log(abs(fft_shift) + 1);
+
+figure;
+imshow(fft_magnitude, []);
+title('FFT Magnitude Spectrum');
+
+% Inverse FFT (Reconstruction)
+ifft_img = real(ifft2(fft_img));
+
+figure;
+imshow(ifft_img);
+title('Reconstructed Image from FFT');
+
+%% =========================
+%% 3. HAAR Transform (Manual Implementation)
+%% =========================
+
+% Function for 1-level Haar Transform
+function haar = haar2D(I)
+[rows, cols] = size(I);
+
+% Row transform
+temp = zeros(rows, cols);
+for i = 1:rows
+    for j = 1:2:cols
+        avg = (I(i,j) + I(i,j+1)) / 2;
+        diff = (I(i,j) - I(i,j+1)) / 2;
+        temp(i,(j+1)/2) = avg;
+        temp(i,(cols/2)+(j+1)/2) = diff;
+    end
+end
+
+% Column transform
+haar = zeros(rows, cols);
+for j = 1:cols
+    for i = 1:2:rows
+        avg = (temp(i,j) + temp(i+1,j)) / 2;
+        diff = (temp(i,j) - temp(i+1,j)) / 2;
+        haar((i+1)/2,j) = avg;
+        haar((rows/2)+(i+1)/2,j) = diff;
+    end
+end
+end
+
+haar_img = haar2D(img);
+
+figure;
+imshow(haar_img, []);
+title('Haar Transform of Image');
