@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+.img-dd{
+    height: 100vh;
+    width: 100vw;
+}
+.container-ee{
+    display: flex;
+    flex-direction: column;
+}
+.about{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    background-color: #ffffff;
+}
+h3{
+    text-align: center;
+    font-size: 3rem;
+    color: #333333;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
