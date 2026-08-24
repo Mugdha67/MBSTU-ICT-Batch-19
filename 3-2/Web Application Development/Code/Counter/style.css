@@ -1,0 +1,48 @@
+:root{
+    --bg-1: #0f2027;
+    --bg-2: #2c5364;
+    --card-bg: rgba(255,255,255,0.06);
+    --accent: #2b9cff;
+    --accent-2: #0069d9;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+body{
+    background:linear-gradient(135deg,var(--bg-1),var(--bg-2));
+    display:flex;align-items:center;justify-content:center;padding:32px;color:#e9f0f9
+}
+
+.app{width:100%;max-width:420px}
+.card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+    border-radius:16px;padding:28px 22px;text-align:center;box-shadow:0 8px 30px rgba(2,6,23,0.6);
+    backdrop-filter: blur(6px);border:1px solid rgba(255,255,255,0.05)
+}
+.title{font-size:0.95rem;font-weight:500;color:rgba(255,255,255,0.85);margin:0 0 6px}
+h1#counter{font-size:72px;margin:6px 0 16px;letter-spacing: -2px;color:linear-gradient(90deg,var(--accent),#7be0ff);}
+
+.controls{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:14px}
+button{
+    font-size:16px;padding:10px 16px;border-radius:10px;border:none;cursor:pointer;
+    background:linear-gradient(180deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 6px 14px rgba(43,156,255,0.18);
+    transition:transform .12s ease,box-shadow .12s ease,opacity .12s ease
+}
+button:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(43,156,255,0.22)}
+button:active{transform:translateY(-1px)}
+button:focus{outline:2px solid rgba(43,156,255,0.16)}
+button:disabled{opacity:0.5;cursor:not-allowed;transform:none;box-shadow:none}
+
+#label-container{display:flex;gap:8px;align-items:center;justify-content:center}
+.label-pill{background:rgba(255,255,255,0.06);padding:6px 10px;border-radius:999px;font-size:0.85rem;color:#dbeeff}
+.label-count{background:rgba(0,0,0,0.15);padding:6px 12px;border-radius:999px;font-weight:600}
+
+/* small pop animation for counter updates */
+.pop{transform:scale(1.06);transition:transform .12s ease}
+
+/* Clap button specific */
+.clap-btn{background:linear-gradient(180deg,#7efcfc,#2b9cff);color:#012;box-shadow:0 6px 18px rgba(46,201,255,0.12)}
+.clap-btn.active{background:linear-gradient(180deg,#5ef08a,#16b75c);color:#042;box-shadow:0 10px 24px rgba(30,200,120,0.16)}
+.clap-indicator{display:inline-block;width:10px;height:10px;border-radius:50%;background:#d7f6e3;margin-left:8px;box-shadow:0 0 6px rgba(0,0,0,0.15)}
+
+@media (max-width:420px){.card{padding:20px}.controls{gap:8px}h1#counter{font-size:56px}}
