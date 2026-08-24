@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weather App</title>
+</head>
+<body>
+
+<h2>Weather Info</h2>
+<button onclick="getWeather()">Get Weather</button>
+
+<script>
+function getWeather() {
+  const apiKey = "81e3ff69832a4003843143111261601";
+  const city = "Dhaka";
+  const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+
+      alert(
+        `City: ${data.location.name}\n` +
+        `Temperature: ${data.current.temp_c} °C\n` +
+        `Condition: ${data.current.condition.text}`
+      );
+    })
+    .catch(error => console.error(error));
+}
+</script>
+
+</body>
+</html>

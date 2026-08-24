@@ -1,0 +1,36 @@
+{
+    "id":"IT22018",
+    "name":"Kuldip Saha Mugdha",
+    "department":"Information and Communication Technology",
+    "age":21,
+    "course":[
+        {
+        "courseID":"ICT3203",
+        "courseName":"Web Application Development",
+        "credits":3
+        },
+        {   
+        "courseID":"ICT3204",
+        "courseName":"Web Application Development Lab",
+        "credits":1
+    }
+    ],
+    "friendlist":[
+        {
+        "id":"IT22001",
+        "name":"Naima",
+        "dist":"Gazipur"
+        },
+        {
+        "id":"IT22025",
+        "name":"Sagor",
+        "dist":"Dhaka"
+        },
+        {
+        "id":"IT22032",
+        "name":"Shourav",
+        "dist":"Comilla"
+        }
+    ]
+
+}

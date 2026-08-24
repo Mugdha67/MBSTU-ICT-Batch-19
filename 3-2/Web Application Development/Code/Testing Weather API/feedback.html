@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weather Feedback App</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #9face6);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: white;
+      padding: 25px 30px;
+      width: 380px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #4facfe;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #00c6ff;
+    }
+
+    .feedback {
+      margin-top: 12px;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .success {
+      background: #e6fffa;
+      color: #065f46;
+    }
+
+    .error {
+      background: #fee2e2;
+      color: #7f1d1d;
+    }
+
+    hr {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h2>📧 Email Feedback</h2>
+  <input type="text" id="email" placeholder="Enter your email">
+  <button onclick="checkEmail()">Submit Email</button>
+  <div id="emailFeedback" class="feedback"></div>
+
+  <hr>
+
+  <h2>🌤️ City Weather</h2>
+  <input type="text" id="city" placeholder="Enter city name">
+  <button onclick="getWeather()">Check Weather</button>
+  <div id="weatherFeedback" class="feedback"></div>
+
+</div>
+
+<script>
+function checkEmail() {
+  const email = document.getElementById("email").value;
+  const feedback = document.getElementById("emailFeedback");
+
+  if (email === "") {
+    feedback.className = "feedback error";
+    feedback.textContent = "❌ Email cannot be empty.";
+  } else if (email.includes("@") && email.includes(".")) {
+    feedback.className = "feedback success";
+    feedback.textContent = "✅ Email looks valid!";
+  } else {
+    feedback.className = "feedback error";
+    feedback.textContent = "⚠️ Invalid email format.";
+  }
+}
+
+function getWeather() {
+  const city = document.getElementById("city").value;
+  const feedback = document.getElementById("weatherFeedback");
+
+  if (city === "") {
+    feedback.className = "feedback error";
+    feedback.textContent = "❌ Please enter a city name.";
+    return;
+  }
+
+  const apiKey = "81e3ff69832a4003843143111261601";
+  const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+
+  feedback.className = "feedback";
+  feedback.textContent = "⏳ Fetching weather...";
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) {
+        feedback.className = "feedback error";
+        feedback.textContent = "❌ " + data.error.message;
+        return;
+      }
+
+      const temp = data.current.temp_c;
+      const condition = data.current.condition.text;
+
+      let mood;
+      if (temp > 30) mood = "🔥 It's hot! Stay hydrated.";
+      else if (temp < 15) mood = "❄️ It's cold! Wear warm clothes.";
+      else mood = "😊 Weather is pleasant today!";
+
+      feedback.className = "feedback success";
+      feedback.innerHTML = `
+        🌍 <b>City:</b> ${data.location.name}<br>
+        🌡️ <b>Temperature:</b> ${temp} °C<br>
+        ☁️ <b>Condition:</b> ${condition}<br><br>
+        ${mood}
+      `;
+    })
+    .catch(() => {
+      feedback.className = "feedback error";
+      feedback.textContent = "❌ Network or API error.";
+    });
+}
+</script>
+
+</body>
+</html>
