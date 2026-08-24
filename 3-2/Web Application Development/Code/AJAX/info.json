@@ -1,0 +1,13 @@
+{ 
+  "blog": { 
+    "name": "My Blog", 
+    "posts": [ 
+      { 
+        "title": "Python Basic", 
+        "url": "https://www.w3schools.com/python/" 
+      }, 
+      { 
+        "title": "HTML Basics", 
+        "url": "https://www.w3schools.com/html/" 
+      } 
+    ] }  } 
