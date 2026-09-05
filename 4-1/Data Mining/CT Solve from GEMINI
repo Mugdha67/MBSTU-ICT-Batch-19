@@ -1,0 +1,110 @@
+CT-1
+### Question 1: Mention a few sources of data impurities. Why is missing data not good? [5 Marks]
+
+#### Sources of Data Impurities (2.5 Marks)
+
+Data impurities (dirty data) arise at various stages of the data lifecycle. Key sources include:
+
+* **Human Errors:** Manual data entry typos, misspellings, or selecting incorrect drop-down options during data collection.
+* **Measurement & Instrument Errors:** Hardware malfunctions, faulty sensors, or calibration drifts yielding inaccurate readings.
+* **Transmission & Network Glitches:** Network timeouts, packet loss, or system crashes during data integration or transfer.
+* **System Integration Inconsistencies:** Combining disparate databases with conflicting schemas, naming conventions, or duplicate entity records.
+* **Software Bugs:** Programming bugs in data transformation scripts or ETL (Extract, Transform, Load) pipelines.
+
+#### Why Missing Data Is Not Good (2.5 Marks)
+
+Missing data undermines analysis and downstream machine learning models in several ways:
+
+* **Reduces Statistical Power:** Dropping rows with missing attributes decreases the overall sample size, which reduces the reliability of statistical conclusions.
+* **Introduces Systemic Bias:** If values are not missing completely at random (e.g., higher-income individuals refusing to disclose earnings), dropping or naively imputing them skews model distributions.
+* **Algorithm Incompatibility:** Most standard algorithms (e.g., standard neural networks, SVMs, linear regression) cannot process empty/`null` inputs directly.
+* **Distorts Relationships:** Incomplete data impairs the ability to identify true correlations and patterns among attributes, often causing models to learn misleading signals.
+
+---
+
+### Question 2: What are the different data attribute types? Write some examples. [5 Marks]
+
+Data attributes (features/variables) describe specific characteristics of a data object and are broadly classified into two categories:
+
+#### 1. Qualitative (Categorical) Attributes (2.5 Marks)
+
+These represent labels or distinct categories rather than quantities:
+
+* **Nominal Attributes:** Values are categories or names with no inherent ordering or ranking.
+* *Examples:* Eye color (Blue, Brown, Green), Marital Status (Single, Married, Divorced), Blood Group ($A$, $B$, $AB$, $O$).
+
+
+* **Binary Attributes:** A nominal attribute with exactly two states (0/1 or True/False).
+* *Symmetric:* Both outcomes are equally important (e.g., Gender: Male/Female).
+* *Asymmetric:* One state is rarer and more significant (e.g., Medical Test: Positive/Negative).
+
+
+* **Ordinal Attributes:** Values have a meaningful rank or order, but the distance between consecutive values is not mathematically defined.
+* *Examples:* Customer Satisfaction rating (Poor, Fair, Good, Excellent), Education Level (High School, Bachelor's, Master's, PhD).
+
+
+
+#### 2. Quantitative (Numeric) Attributes (2.5 Marks)
+
+These represent measurable quantities expressed as integers or real values:
+
+* **Interval-Scaled Attributes:** Measured on an equal-interval scale, but lack a true/absolute zero point (ratios are not meaningful).
+* *Examples:* Temperature in Celsius or Fahrenheit ($0^\circ\text{C}$ does not indicate the absence of heat), Calendar dates.
+
+
+* **Ratio-Scaled Attributes:** Numeric values with an absolute/meaningful zero point (a value of zero means absence of the attribute; ratios are meaningful).
+* *Examples:* Salary ($0 means no income; $100k is twice $50k), Age, Weight, Distance.
+
+
+
+*(Note: Numeric attributes can also be subdivided into **Discrete**—countable, e.g., customer count—and **Continuous**—uncountable real numbers, e.g., height).*
+
+---
+
+### Question 3: Quartiles are important in data discovery. How, and why? [5 Marks]
+
+#### How Quartiles Work (2.5 Marks)
+
+Quartiles divide a sorted numerical dataset into four equal parts using three cut-off points:
+
+* **First Quartile ($Q_1$ / 25th percentile):** $25\%$ of the data falls below this value.
+* **Second Quartile ($Q_2$ / Median / 50th percentile):** Cuts the dataset directly in half.
+* **Third Quartile ($Q_3$ / 75th percentile):** $75\%$ of the data falls below this value.
+* **Interquartile Range ($IQR$):** Calculated as $IQR = Q_3 - Q_1$, measuring the spread of the middle $50\%$ of the data.
+* **Boxplot Visualization (Five-Number Summary):** Quartiles form the foundation of the 5-number summary ($Minimum$, $Q_1$, $Median$, $Q_3$, $Maximum$). Outliers are explicitly identified as points outside the whiskers:
+
+$$\text{Lower Bound} = Q_1 - 1.5 \times IQR$$
+
+
+$$\text{Upper Bound} = Q_3 + 1.5 \times IQR$$
+
+
+
+#### Why Quartiles Are Important in Data Discovery (2.5 Marks)
+
+* **Robust to Outliers:** Unlike the mean and standard deviation, quartiles are non-parametric and resistant to extreme values, providing an honest look at typical ranges.
+* **Reveals Data Skewness:** Comparing $(Q_2 - Q_1)$ with $(Q_3 - Q_2)$ immediately reveals distribution asymmetry (skewness) without complex computations.
+* **Standardized Outlier Detection:** $IQR$-based filtering provides a mathematically clear, automated way to flag anomalies before model training.
+* **Compact Dataset Comparison:** Box plots allow rapid side-by-side comparisons of multiple feature distributions across different classes or categories.
+
+---
+
+### Question 4: What qualities define data quality? Why do they matter? [5 Marks]
+
+#### Qualities that Define Data Quality (2.5 Marks)
+
+Data quality is evaluated across several fundamental dimensions:
+
+* **Accuracy:** Whether values reflect the true, correct real-world phenomena without recording or sensor errors.
+* **Completeness:** The degree to which all required data is recorded without missing fields or missing records.
+* **Consistency:** The absence of contradictions across multiple tables, systems, or representations (e.g., matching address records across customer service and billing).
+* **Timeliness (Currency):** How up-to-date the data is relative to the task or decision-making window.
+* **Uniqueness:** The absence of duplicate records or entities in the dataset.
+* **Validity (Believability / Interpretability):** Whether data adheres to defined business formats, data types, and realistic constraint ranges.
+
+#### Why Data Quality Matters (2.5 Marks)
+
+* **Garbage In, Garbage Out (GIGO):** Even the most sophisticated machine learning algorithms produce faulty, misleading predictions if trained on noisy or low-quality data.
+* **Trustworthy Strategic Decisions:** Faulty metrics lead management or automated systems to make incorrect operational and financial choices.
+* **Reduced Data Prep Overhead:** Data cleaning often consumes up to $80\%$ of a data scientist's project time; high data quality dramatically cuts preprocessing and engineering costs.
+* **Regulatory Compliance & Risk Reduction:** In regulated sectors like finance and healthcare (e.g., GDPR, HIPAA), inaccurate or non-auditable data leads to severe legal penalties and reputational damage.
