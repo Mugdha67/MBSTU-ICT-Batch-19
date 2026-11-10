@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cipher Learning Lab · Theory & Practice</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: #0b1120;
+            color: #e8edf5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 1rem 3rem;
+        }
+
+        .app-wrapper {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(20, 30, 50, 0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 2.5rem;
+            padding: 2rem 2rem 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+            border: 1px solid #2d3b52;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            background: linear-gradient(145deg, #a5f3fc, #67e8f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(103, 232, 249, 0.2);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            margin-top: 0.2rem;
+            letter-spacing: 2px;
+        }
+
+        .nav-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem 1.2rem;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .nav-btn {
+            background: #1e2a3a;
+            border: none;
+            padding: 0.7rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #cbd5e1;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #334155;
+        }
+
+        .nav-btn i {
+            color: #60a5fa;
+        }
+
+        .nav-btn:hover {
+            background: #2d3f55;
+            color: white;
+            transform: translateY(-3px);
+            border-color: #60a5fa;
+        }
+
+        .nav-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #93bbfc;
+            box-shadow: 0 0 20px #2563eb55;
+        }
+
+        .nav-btn.active i {
+            color: white;
+        }
+
+        /* sections */
+        .section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0.2; transform: translateY(8px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .theory-card {
+            background: #131f33;
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2rem;
+            border-left: 6px solid #3b82f6;
+            box-shadow: inset 0 0 0 1px #2d405b;
+        }
+
+        .theory-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #b9d6ff;
+        }
+
+        .theory-card h3 i {
+            color: #60a5fa;
+            font-size: 1.8rem;
+        }
+
+        .theory-card p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #cfdcec;
+            margin-bottom: 0.3rem;
+        }
+
+        .theory-card .sub {
+            color: #8ba3c9;
+            font-size: 0.95rem;
+            padding-left: 0.5rem;
+            border-left: 2px solid #3b82f6;
+            margin-top: 0.5rem;
+        }
+
+        .cipher-box {
+            background: #0f1a2b;
+            border-radius: 30px;
+            padding: 2rem 1.8rem;
+            box-shadow: inset 0 0 0 1px #2a3b52, 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .input-group input {
+            width: 90%;
+            max-width: 420px;
+            padding: 0.9rem 1.2rem;
+            border-radius: 60px;
+            border: none;
+            background: #1a2940;
+            color: white;
+            font-size: 1rem;
+            outline: 1px solid #2d4668;
+            transition: 0.2s;
+        }
+
+        .input-group input:focus {
+            outline: 2px solid #3b82f6;
+            background: #1e3150;
+        }
+
+        .input-group input::placeholder {
+            color: #6d85aa;
+            font-weight: 300;
+        }
+
+        .action-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            margin: 1.2rem 0 0.5rem;
+        }
+
+        .cipher-btn {
+            background: #1e3857;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #e2edff;
+            cursor: pointer;
+            transition: 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #345a7a;
+        }
+
+        .cipher-btn i {
+            color: #7aa9ff;
+        }
+
+        .cipher-btn:hover {
+            background: #2a4a70;
+            transform: scale(1.02);
+            border-color: #5f8fd9;
+        }
+
+        .cipher-btn.enc {
+            background: #0f4f3a;
+            border-color: #2a8f6a;
+        }
+
+        .cipher-btn.enc i {
+            color: #4ade80;
+        }
+
+        .cipher-btn.dec {
+            background: #4a2f3a;
+            border-color: #9f4a6a;
+        }
+
+        .cipher-btn.dec i {
+            color: #f472b6;
+        }
+
+        .result-area {
+            margin-top: 1.8rem;
+            background: #0b1625;
+            padding: 1.2rem;
+            border-radius: 40px;
+            border: 1px solid #2a4060;
+            min-height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-break: break-all;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #a5d8ff;
+            letter-spacing: 0.5px;
+        }
+
+        .result-area i {
+            margin-right: 12px;
+            color: #60a5fa;
+        }
+
+        .badge {
+            background: #1d3450;
+            border-radius: 30px;
+            padding: 0.2rem 1rem;
+            font-size: 0.8rem;
+            color: #9bb9e6;
+            display: inline-block;
+        }
+
+        hr {
+            border: 0.5px solid #29415e;
+            margin: 1.5rem 0;
+        }
+
+        .classification-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 1rem 0 0.5rem;
+            justify-content: center;
+        }
+
+        .class-item {
+            background: #142237;
+            padding: 0.8rem 1.5rem;
+            border-radius: 60px;
+            font-weight: 500;
+            border: 1px solid #2d4a6a;
+            color: #b6cef0;
+        }
+
+        .class-item i {
+            margin-right: 6px;
+            color: #5f9eff;
+        }
+
+        .footnote {
+            color: #6b85aa;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .app-wrapper { padding: 1.2rem; }
+            header h1 { font-size: 2rem; }
+            .theory-card { padding: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="app-wrapper">
+
+    <header>
+        <h1>🔐 Cipher Learning Lab</h1>
+        <p><i class="fas fa-graduation-cap" style="color: #60a5fa;"></i> Theory · Classification · Practice</p>
+    </header>
+
+    <!-- NAVIGATION -->
+    <div class="nav-bar">
+        <button class="nav-btn active" data-section="home"><i class="fas fa-home"></i> Home</button>
+        <button class="nav-btn" data-section="mono"><i class="fas fa-font"></i> Monoalphabetic</button>
+        <button class="nav-btn" data-section="playfair"><i class="fas fa-th"></i> Playfair</button>
+        <button class="nav-btn" data-section="hill"><i class="fas fa-cubes"></i> Hill</button>
+    </div>
+
+    <!-- ================== HOME ================== -->
+    <div id="section-home" class="section active">
+        <div class="theory-card">
+            <h3><i class="fas fa-book-open"></i> Cipher Classification & Theory</h3>
+            <p><strong>Classical ciphers</strong> are divided into <strong>substitution</strong> and <strong>transposition</strong>. 
+            Substitution ciphers replace plaintext symbols with ciphertext symbols.</p>
+            <div class="classification-grid">
+                <span class="class-item"><i class="fas fa-arrow-right"></i> Monoalphabetic</span>
+                <span class="class-item"><i class="fas fa-arrow-right"></i> Poly alphabetic</span>
+                <span class="class-item"><i class="fas fa-arrow-right"></i> Playfair (digraph)</span>
+                <span class="class-item"><i class="fas fa-arrow-right"></i> Hill (matrix)</span>
+            </div>
+            <p style="margin-top: 0.8rem;"><i class="fas fa-diagram-project" style="color: #60a5fa;"></i> <strong>Monoalphabetic:</strong> fixed substitution (A→Z). <br>
+            <strong>Playfair:</strong> encrypts pairs of letters using a 5×5 matrix (I/J merged). <br>
+            <strong>Hill cipher:</strong> uses linear algebra (matrix multiplication) for encryption/decryption.</p>
+            <div class="sub"><i class="fas fa-info-circle"></i> All three are symmetric-key ciphers. The key defines the substitution or matrix.</div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; margin-top: 1rem;">
+            <div style="background: #101d31; padding: 1.2rem; border-radius: 30px; flex: 1 1 200px; border: 1px solid #29415e;">
+                <i class="fas fa-shield-alt" style="color: #4ade80; font-size: 1.8rem;"></i>
+                <h4 style="margin: 0.3rem 0;">Monoalphabetic</h4>
+                <p style="font-size: 0.9rem; color: #a1b9de;">Simple substitution, 26! keys. Vulnerable to frequency analysis.</p>
+            </div>
+            <div style="background: #101d31; padding: 1.2rem; border-radius: 30px; flex: 1 1 200px; border: 1px solid #29415e;">
+                <i class="fas fa-table" style="color: #facc15; font-size: 1.8rem;"></i>
+                <h4 style="margin: 0.3rem 0;">Playfair</h4>
+                <p style="font-size: 0.9rem; color: #a1b9de;">Digraph substitution, 5×5 matrix. Harder to crack than monoalphabetic.</p>
+            </div>
+            <div style="background: #101d31; padding: 1.2rem; border-radius: 30px; flex: 1 1 200px; border: 1px solid #29415e;">
+                <i class="fas fa-calculator" style="color: #f472b6; font-size: 1.8rem;"></i>
+                <h4 style="margin: 0.3rem 0;">Hill (2×2)</h4>
+                <p style="font-size: 0.9rem; color: #a1b9de;">Matrix multiplication mod 26. Requires invertible key matrix.</p>
+            </div>
+        </div>
+        <hr>
+        <p style="color: #8ba3c9; text-align: center;"><i class="fas fa-chevron-circle-down"></i> Select a cipher from the navigation bar to encrypt / decrypt.</p>
+    </div>
+
+    <!-- ================== MONO ================== -->
+    <div id="section-mono" class="section">
+        <div class="theory-card">
+            <h3><i class="fas fa-font"></i> Monoalphabetic Cipher</h3>
+            <p>Each letter is replaced by a fixed substitute. The key is a permutation of 26 letters.</p>
+            <div class="sub"><i class="fas fa-key"></i> Key must be exactly 26 unique letters (e.g. QWERTYUIOPASDFGHJKLZXCVBNM).</div>
+        </div>
+        <div class="cipher-box">
+            <div class="input-group">
+                <input id="monoText" placeholder="Enter plaintext or ciphertext" value="HELLO WORLD">
+                <input id="monoKey" placeholder="26-letter key (e.g. ZEBRACDFGHIJKLMNOPQSTUVWXY)" value="ZEBRACDFGHIJKLMNOPQSTUVWXY">
+            </div>
+            <div class="action-group">
+                <button class="cipher-btn enc" onclick="monoProcess('enc')"><i class="fas fa-lock"></i> Encrypt</button>
+                <button class="cipher-btn dec" onclick="monoProcess('dec')"><i class="fas fa-unlock"></i> Decrypt</button>
+            </div>
+            <div id="monoResult" class="result-area"><i class="fas fa-arrow-right"></i> Result</div>
+        </div>
+    </div>
+
+    <!-- ================== PLAYFAIR ================== -->
+    <div id="section-playfair" class="section">
+        <div class="theory-card">
+            <h3><i class="fas fa-th"></i> Playfair Cipher</h3>
+            <p>Encrypts digraphs (pairs of letters) using a 5×5 matrix. J is replaced by I. The key builds the matrix.</p>
+            <div class="sub"><i class="fas fa-info-circle"></i> Repeated letters in a pair are separated by 'X'. Odd length gets trailing 'X'.</div>
+        </div>
+        <div class="cipher-box">
+            <div class="input-group">
+                <input id="pfText" placeholder="Enter text" value="SECRET MESSAGE">
+                <input id="pfKey" placeholder="Key for matrix" value="PLAYFAIR">
+            </div>
+            <div class="action-group">
+                <button class="cipher-btn enc" onclick="playfairProcess('enc')"><i class="fas fa-lock"></i> Encrypt</button>
+                <button class="cipher-btn dec" onclick="playfairProcess('dec')"><i class="fas fa-unlock"></i> Decrypt</button>
+            </div>
+            <div id="pfResult" class="result-area"><i class="fas fa-arrow-right"></i> Result</div>
+        </div>
+    </div>
+
+    <!-- ================== HILL ================== -->
+    <div id="section-hill" class="section">
+        <div class="theory-card">
+            <h3><i class="fas fa-cubes"></i> Hill Cipher (2×2)</h3>
+            <p>Encrypts pairs using matrix multiplication mod 26. Decryption uses the inverse matrix (mod 26).</p>
+            <div class="sub"><i class="fas fa-calculator"></i> Enter 4 numbers for the 2×2 key matrix (e.g. 3 3 2 5). Must be invertible mod 26.</div>
+        </div>
+        <div class="cipher-box">
+            <div class="input-group">
+                <input id="hillText" placeholder="Enter text" value="HELLO">
+                <input id="hillKey" placeholder="4 numbers: a b c d" value="3 3 2 5">
+            </div>
+            <div class="action-group">
+                <button class="cipher-btn enc" onclick="hillProcess('enc')"><i class="fas fa-lock"></i> Encrypt</button>
+                <button class="cipher-btn dec" onclick="hillProcess('dec')"><i class="fas fa-unlock"></i> Decrypt</button>
+            </div>
+            <div id="hillResult" class="result-area"><i class="fas fa-arrow-right"></i> Result</div>
+        </div>
+    </div>
+
+    <hr style="margin-top: 2.5rem;">
+    <footer style="text-align: center; color: #556f94; font-size: 0.9rem;">
+        <i class="fas fa-flask"></i> Cipher Learning Lab · built with HTML, CSS, JavaScript
+    </footer>
+</div>
+
+<script>
+    // ========== NAVIGATION ==========
+    const navBtns = document.querySelectorAll('.nav-btn');
+    const sections = {
+        home: document.getElementById('section-home'),
+        mono: document.getElementById('section-mono'),
+        playfair: document.getElementById('section-playfair'),
+        hill: document.getElementById('section-hill')
+    };
+
+    navBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            navBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const section = btn.dataset.section;
+            Object.values(sections).forEach(s => s.classList.remove('active'));
+            if (section === 'home') sections.home.classList.add('active');
+            else if (section === 'mono') sections.mono.classList.add('active');
+            else if (section === 'playfair') sections.playfair.classList.add('active');
+            else if (section === 'hill') sections.hill.classList.add('active');
+        });
+    });
+
+    // ========== MONOALPHABETIC ==========
+    function monoProcess(mode) {
+        let text = document.getElementById("monoText").value.toUpperCase();
+        let key = document.getElementById("monoKey").value.toUpperCase();
+        const resultEl = document.getElementById("monoResult");
+
+        if (key.length !== 26) {
+            resultEl.innerHTML = `<i class="fas fa-exclamation-triangle" style="color:#f87171;"></i> Key must be 26 letters!`;
+            return;
+        }
+        let result = "";
+        for (let c of text) {
+            if (c >= 'A' && c <= 'Z') {
+                if (mode === "enc") result += key[c.charCodeAt(0) - 65];
+                else {
+                    let idx = key.indexOf(c);
+                    result += idx !== -1 ? String.fromCharCode(idx + 65) : c;
+                }
+            } else result += c;
+        }
+        resultEl.innerHTML = `<i class="fas fa-arrow-right"></i> ${result}`;
+    }
+
+    // ========== PLAYFAIR ==========
+    function createMatrix(key) {
+        key = key.toUpperCase().replace(/J/g, 'I');
+        let used = new Set();
+        let matrix = [];
+        for (let c of key) {
+            if (c >= 'A' && c <= 'Z' && !used.has(c)) {
+                used.add(c);
+                matrix.push(c);
+            }
+        }
+        for (let i = 65; i <= 90; i++) {
+            let c = String.fromCharCode(i);
+            if (c === 'J') continue;
+            if (!used.has(c)) matrix.push(c);
+        }
+        return matrix;
+    }
+
+    function findPos(matrix, char) {
+        let idx = matrix.indexOf(char);
+        return [Math.floor(idx / 5), idx % 5];
+    }
+
+    function prepareText(text) {
+        text = text.toUpperCase().replace(/J/g, 'I').replace(/[^A-Z]/g, '');
+        let res = "";
+        for (let i = 0; i < text.length; i++) {
+            res += text[i];
+            if (text[i] === text[i + 1]) res += 'X';
+        }
+        if (res.length % 2 !== 0) res += 'X';
+        return res;
+    }
+
+    function playfairProcess(mode) {
+        let text = document.getElementById("pfText").value;
+        let key = document.getElementById("pfKey").value;
+        const resultEl = document.getElementById("pfResult");
+
+        if (!key) {
+            resultEl.innerHTML = `<i class="fas fa-exclamation-triangle" style="color:#f87171;"></i> Enter key!`;
+            return;
+        }
+        let matrix = createMatrix(key);
+        text = mode === "enc" ? prepareText(text) : text.toUpperCase().replace(/[^A-Z]/g, '');
+        if (text.length % 2 !== 0) text += 'X';
+        let result = "";
+        for (let i = 0; i < text.length; i += 2) {
+            let [r1, c1] = findPos(matrix, text[i]);
+            let [r2, c2] = findPos(matrix, text[i + 1]);
+            if (r1 === r2) {
+                let shift = mode === "enc" ? 1 : 4;
+                result += matrix[r1 * 5 + (c1 + shift) % 5];
+                result += matrix[r2 * 5 + (c2 + shift) % 5];
+            } else if (c1 === c2) {
+                let shift = mode === "enc" ? 1 : 4;
+                result += matrix[((r1 + shift) % 5) * 5 + c1];
+                result += matrix[((r2 + shift) % 5) * 5 + c2];
+            } else {
+                result += matrix[r1 * 5 + c2];
+                result += matrix[r2 * 5 + c1];
+            }
+        }
+        resultEl.innerHTML = `<i class="fas fa-arrow-right"></i> ${result}`;
+    }
+
+    // ========== HILL ==========
+    function modInverse(a, m) {
+        a = ((a % m) + m) % m;
+        for (let x = 1; x < m; x++) {
+            if ((a * x) % m === 1) return x;
+        }
+        return null;
+    }
+
+    function hillProcess(mode) {
+        let text = document.getElementById("hillText").value.toUpperCase().replace(/[^A-Z]/g, '');
+        let keyInput = document.getElementById("hillKey").value.split(" ").map(Number);
+        const resultEl = document.getElementById("hillResult");
+
+        if (keyInput.length !== 4 || keyInput.some(isNaN)) {
+            resultEl.innerHTML = `<i class="fas fa-exclamation-triangle" style="color:#f87171;"></i> Enter 4 valid numbers!`;
+            return;
+        }
+        let key = keyInput;
+        if (text.length % 2 !== 0) text += 'X';
+
+        if (mode === "dec") {
+            let det = key[0] * key[3] - key[1] * key[2];
+            det = ((det % 26) + 26) % 26;
+            let invDet = modInverse(det, 26);
+            if (!invDet) {
+                resultEl.innerHTML = `<i class="fas fa-exclamation-triangle" style="color:#f87171;"></i> Invalid key (not invertible mod 26)`;
+                return;
+            }
+            key = [
+                (key[3] * invDet) % 26,
+                (-key[1] * invDet) % 26,
+                (-key[2] * invDet) % 26,
+                (key[0] * invDet) % 26
+            ].map(x => (x + 26) % 26);
+        }
+
+        let result = "";
+        for (let i = 0; i < text.length; i += 2) {
+            let a = text.charCodeAt(i) - 65;
+            let b = text.charCodeAt(i + 1) - 65;
+            let x = (key[0] * a + key[1] * b) % 26;
+            let y = (key[2] * a + key[3] * b) % 26;
+            result += String.fromCharCode(x + 65) + String.fromCharCode(y + 65);
+        }
+        resultEl.innerHTML = `<i class="fas fa-arrow-right"></i> ${result}`;
+    }
+</script>
+</body>
+</html>
