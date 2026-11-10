@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hide Message</title>
+</head>
+<body>
+    <h2>📦 Hide Message in Image</h2>
+    <form action="/cgi-bin/hide.exe" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept=".bmp" required><br><br>
+        <textarea name="message" rows="4" cols="50" placeholder="Enter secret message..."></textarea><br><br>
+        <input type="submit" value="Hide & Download">
+    </form>
+    <br><a href="index.html">⬅ Back</a>
+</body>
+</html>
